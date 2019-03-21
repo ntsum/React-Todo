@@ -1,35 +1,53 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
-import { timingSafeEqual } from 'crypto';
 
 
-
+const todoData = [
+  {
+    task: "Organize Garage",
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: "Bake Cookies",
+    id: 1528817084358,
+    completed: false
+  }
+];
 
 class App extends React.Component {
 constructor () {
   super ();
-  this.state = [
-    {
-      task: "Organize Garage",
-      id: 1528817077286,
-      completed: false
-    },
-    {
-      task: "Bake Cookies",
-      id: 1528817084358,
-      completed: false
-    }
-  ];
-}
-addToDo = (event) => {
-  event.preventDefault()
-  console.log('addToDo')
+  this.state = {
+    todos: todoData,
+    inputText : ""
+  };
+  
+  }
+
+handleChange= event => {
+  this.setState({inputText:event.target.value})
 }
 
-clearComplete = (event) => {
+handleClick = event => {
   event.preventDefault()
-  console.log('complete')
+
+const newToDo = {
+  task: this.state.inputText,
+  id: Date.now(),
+  completed: false
+};
+  this.setState({
+  todos: [...this.state.todos, newToDo],
+  inputText: ""
+    
+    
+  });
+}
+
+clearComplete = event => {
+  event.preventDefault()
 }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -38,10 +56,11 @@ clearComplete = (event) => {
   render() {
     return (
       <div>
-        <TodoForm task = {this.state[0].task}
-        addToDo = {this.addToDo} 
+        <TodoList todoItems = {this.state.todos}/>
+        <TodoForm handleChange={this.handleChange}
+        inputText = {this.state.inputText}
+        handleClick = {this.handleClick} 
         clearComplete= {this.clearComplete}/>
-        <TodoList/>
       </div>
     );
   }
