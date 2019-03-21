@@ -6,7 +6,7 @@ const Todo = props => {
       style={props.todoInfo.completed ? { textDecoration: 'line-through' } : null}
       onClick={() => props.toggle(props.todoInfo.id)}
     >
-    <li>{props.todoInfo.task}</li>
+    <li><strong>{props.todoInfo.task}</strong></li>
     </p>
       </React.Fragment>
 }

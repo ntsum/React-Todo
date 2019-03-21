@@ -5,16 +5,7 @@ import TodoList from './components/TodoComponents/TodoList';
 
 //this is the DATA that we use as a base for more incoming data
 const todoData = [
-  {
-    task: "Organize Garage",
-    id: 1528817077286,
-    completed: false
-  },
-  {
-    task: "Bake Cookies",
-    id: 1528817084358,
-    completed: false
-  }
+  
 ];
 
 class App extends React.Component {
@@ -81,13 +72,13 @@ toggleComplete = id => {
   //this is the section where I am calling all of my props into the state
   render() {
     return (
-      <div className="container">
-        <TodoList todoItems = {this.state.todos}
-        toggle={this.toggleComplete}/>
+      <div>
         <TodoForm handleChange={this.handleChange}
         inputText = {this.state.inputText}
         handleClick = {this.handleClick} 
         clearComplete= {this.clearComplete}/>
+        <TodoList todoItems = {this.state.todos}
+        toggle={this.toggleComplete}/>
       </div>
     );
   }

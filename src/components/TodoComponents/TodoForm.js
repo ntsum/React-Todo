@@ -3,7 +3,7 @@ import React from 'react';
 //this is where my form is created for input from the user as well as where the prop is called which uses the function in App.js to make the button functional
 const TodoForm = props => {
   return (
-    <form action="">
+    <form>
       <input
         type="text"
         className="input"
