@@ -2,6 +2,7 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
+
 //this is the DATA that we use as a base for more incoming data
 const todoData = [
   {
@@ -36,6 +37,7 @@ handleChange= event => {
 handleClick = event => {
   event.preventDefault()
 
+  //this is the new object that will return when todo item is added to the list Date.now updates ID 
 const newToDo = {
   task: this.state.inputText,
   id: Date.now(),
@@ -49,14 +51,14 @@ const newToDo = {
   });
 }
 
-//this clears the items from the todo list
+//this returns true or false for todo list
 clearComplete = event => {
   event.preventDefault()
   let todos = this.state.todos.filter(todo=> !todo.completed);
   this.setState({todos});
 };
 
-//this returns true or false for todo list
+//this focuses on the id and uses map to return a new array which shows if the todo item had been completed or not 
 toggleComplete = id => {
   let todos = this.state.todos.slice();
   todos = todos.map(todo => {
@@ -79,7 +81,7 @@ toggleComplete = id => {
   //this is the section where I am calling all of my props into the state
   render() {
     return (
-      <div>
+      <div className="container">
         <TodoList todoItems = {this.state.todos}
         toggle={this.toggleComplete}/>
         <TodoForm handleChange={this.handleChange}
